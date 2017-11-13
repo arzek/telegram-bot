@@ -13,10 +13,6 @@ use Telegram;
 class TelegramService
 {
 
-
-    /**
-     * @return bool
-     */
     public static function installWebhook(): void
     {
         $url = config('app.webhook-url');
