@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Service\TelegramService;
 use Illuminate\Console\Command;
 use Telegram;
 
@@ -39,9 +38,17 @@ class TelegramInstallWebhook extends Command
      */
     public function handle()
     {
+        $url = config('app.webhook-url');
+        $this->info('URL - '.$url);
+
         try {
-            TelegramService::installWebhook();
-            $this->info('Webhook is installed!');
+            $response = Telegram::setWebhook(['url' => $url]);
+
+            if(count($response)) {
+                $this->info('Web hook is installed!');
+            } else {
+                $this->error('Web hook is not installed!');
+            }
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }
