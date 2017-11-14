@@ -20,8 +20,8 @@ class TelegramService
     {
         switch ($command){
             case '/start':{
-                self::sendMessage('Hi!',$chat_id);
-                break;
+               $message = 'Hi';
+               break;
             }
             case '/ssl-info': {
 
@@ -39,10 +39,12 @@ class TelegramService
                 break;
             }
             default: {
-                self::sendMessage('I do not understand you(',$chat_id);
+                $message = 'I do not understand you(';
                 break;
             }
         }
+
+        self::sendMessage('Hi!',$chat_id);
     }
 
 
