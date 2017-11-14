@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Service\TelegramService;
+use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Telegram;
 use Log;
