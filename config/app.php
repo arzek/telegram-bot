@@ -23,7 +23,6 @@ return [
 
     'webhook-url' => env('APP_URL').'/api/webhook/telegram/'.env('TELEGRAM_BOT_TOKEN'),
     'webhook-url-min' => '/api/webhook/telegram/'.env('TELEGRAM_BOT_TOKEN'),
-
     /*
     |--------------------------------------------------------------------------
     | Application Environment
