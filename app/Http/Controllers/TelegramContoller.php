@@ -21,8 +21,13 @@ class TelegramContoller extends Controller
             $command = $request->input('message.text');
             $chat_data = $request->input()['message']['chat'];
             if ($command && $chat_id && $chat_data) {
-                $user_repositories = new UserRepositories($chat_data);
-                TelegramService::run($command,$chat_id,$user_repositories);
+
+                try {
+                    $user_repositories = new UserRepositories($chat_data);
+                    TelegramService::run($command,$chat_id,$user_repositories);
+                } catch (\Exception $exception) {
+                    TelegramService::sendMessage('Sorry, we had a technical error(',$chat_id);
+                }
             }
         }
     }

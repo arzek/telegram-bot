@@ -66,7 +66,7 @@ class TelegramService
      * @param int $chat_id
      * @return int
      */
-    private static function sendMessage(string $message,int $chat_id): int
+    public static function sendMessage(string $message,int $chat_id): int
     {
         $response = Telegram::sendMessage([
             'chat_id' =>$chat_id,
