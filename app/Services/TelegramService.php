@@ -13,7 +13,7 @@ use Telegram;
 class TelegramService
 {
     /**
-     * @param string $command
+     * @param string $user_text
      * @param int $chat_id
      */
     public static function run(string $user_text,int $chat_id): void
@@ -33,7 +33,6 @@ class TelegramService
                 } else {
                     $message = 'You have not written a domain(';
                 }
-
                 break;
             }
             case '/subscribe': {
