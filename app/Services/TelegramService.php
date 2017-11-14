@@ -8,6 +8,7 @@
 
 namespace App\Services;
 
+use App\Repositories\UserRepositories;
 use Telegram;
 
 class TelegramService
@@ -15,8 +16,9 @@ class TelegramService
     /**
      * @param string $user_text
      * @param int $chat_id
+     * @param UserRepositories $user_repositories
      */
-    public static function run(string $user_text,int $chat_id): void
+    public static function run(string $user_text,int $chat_id,UserRepositories $user_repositories): void
     {
         $data = explode(' ',$user_text);
 
@@ -36,11 +38,13 @@ class TelegramService
                 break;
             }
             case '/subscribe': {
-                $message = '';
+                $user_repositories->subscribe();
+                $message = 'You are successfully signed up!';
                 break;
             }
             case '/unsubscribe': {
-                $message = '';
+                $user_repositories->unsubscribe();
+                $message = 'You are successfully unsubscribing!';
                 break;
             }
             case '/help': {

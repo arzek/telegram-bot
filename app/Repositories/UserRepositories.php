@@ -14,28 +14,73 @@ use Log;
 
 class UserRepositories
 {
-    public static function getOrCreateUser(array $data): User
+    /**
+     * @var User
+     */
+    private $user;
+
+
+    /**
+     * @param array $data
+     */
+    public function __construct(array $data)
     {
         $user = User::find($data['id']);
 
         if(!$user) {
 
-        $user = new User();
+            $user = new User();
 
-        $user->id = $data['id'];
-        $user->first_name = $data['first_name'] ?? '';
-        $user->last_name = $data['last_name'] ?? '';
-        $user->username = $data['username'] ?? '';
-        $user->type = $data['type'] ?? '';
-        $user->subscribe = false;
+            $user->id = $data['id'];
+            $user->first_name = $data['first_name'] ?? '';
+            $user->last_name = $data['last_name'] ?? '';
+            $user->username = $data['username'] ?? '';
+            $user->type = $data['type'] ?? '';
+            $user->subscribe = false;
 
-        $user->save();
+            $user->save();
 
-        Log::info('User save.');
+            Log::info('User save.');
 
-            return $user;
+            $this->setUser($user);
         } else {
-            return $user;
+            $this->setUser($user);
         }
     }
+
+    /**
+     * @return User
+     */
+    private function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    private function setUser(User $user)
+    {
+        $this->user = $user;
+    }
+
+    public function subscribe()
+    {
+        $user = $this->getUser();
+        $user->subscribe = true;
+        $user->save();
+
+        return $this;
+    }
+
+    public function unsubscribe()
+    {
+        $user = $this->getUser();
+
+        $user->subscribe = false;
+        $user->save();
+
+        return $this;
+    }
+
 }
