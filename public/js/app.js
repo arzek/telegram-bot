@@ -118,7 +118,7 @@ window.Vuetify = __webpack_require__(7);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('app', __webpack_require__(8));
+Vue.component('app', __webpack_require__(17));
 
 var app = new Vue({
   el: '#app',
@@ -27299,54 +27299,7 @@ function unbind(el, binding) {
 //# sourceMappingURL=vuetify.js.map
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(9)
-/* script */
-var __vue_script__ = __webpack_require__(10)
-/* template */
-var __vue_template__ = __webpack_require__(11)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/App.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-66ab2f82", Component.options)
-  } else {
-    hotAPI.reload("data-v-66ab2f82", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 8 */,
 /* 9 */
 /***/ (function(module, exports) {
 
@@ -27456,7 +27409,214 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 10 */
+/* 10 */,
+/* 11 */,
+/* 12 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(9)
+/* script */
+var __vue_script__ = __webpack_require__(18)
+/* template */
+var __vue_template__ = __webpack_require__(19)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/AppComponent.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f21621a4", Component.options)
+  } else {
+    hotAPI.reload("data-v-f21621a4", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_TableComponent_vue__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_TableComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_TableComponent_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        'table-component': __WEBPACK_IMPORTED_MODULE_0__components_TableComponent_vue___default.a
+    }
+});
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-app",
+    { attrs: { id: "inspire" } },
+    [
+      _c(
+        "v-toolbar",
+        { attrs: { color: "primary", dark: "", fixed: "", app: "" } },
+        [_c("v-toolbar-title", [_vm._v("Application")])],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "main",
+        [
+          _c(
+            "v-content",
+            [
+              _c(
+                "v-container",
+                { attrs: { fluid: "", "fill-height": "" } },
+                [
+                  _c(
+                    "v-layout",
+                    { attrs: { "justify-center": "", "align-center": "" } },
+                    [_c("table-component")],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("v-footer", { attrs: { color: "primary", app: "" } }, [
+        _c("span", { staticClass: "white--text" }, [_vm._v("© Arzek")])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f21621a4", module.exports)
+  }
+}
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(9)
+/* script */
+var __vue_script__ = __webpack_require__(21)
+/* template */
+var __vue_template__ = __webpack_require__(22)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/TableComponent.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-294c2f46", Component.options)
+  } else {
+    hotAPI.reload("data-v-294c2f46", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27481,20 +27641,121 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'table-component',
     data: function data() {
         return {
-            drawer: true
+            pagination: {},
+            selected: [],
+            headers: [{
+                text: 'Telegram Subscribers',
+                align: 'left',
+                value: 'name'
+            }, { text: 'Count', value: 'calories' }],
+            items: [{
+                value: false,
+                name: 'Frozen Yogurt',
+                calories: 159
+            }, {
+                value: false,
+                name: 'Ice cream sandwich',
+                calories: 237
+            }, {
+                value: false,
+                name: 'Eclair',
+                calories: 262
+            }, {
+                value: false,
+                name: 'Cupcake',
+                calories: 305
+            }, {
+                value: false,
+                name: 'Gingerbread',
+                calories: 356
+            }, {
+                value: false,
+                name: 'Jelly bean',
+                calories: 375
+            }, {
+                value: false,
+                name: 'Lollipop',
+                calories: 392
+            }, {
+                value: false,
+                name: 'Honeycomb',
+                calories: 408
+            }, {
+                value: false,
+                name: 'Donut',
+                calories: 452
+            }, {
+                value: false,
+                name: 'KitKat',
+                calories: 518
+            }]
         };
     },
-    props: {
-        source: String
+
+    methods: {
+        toggleAll: function toggleAll() {
+            if (this.selected.length) this.selected = [];else this.selected = this.items.slice();
+        },
+        changeSort: function changeSort(column) {
+            if (this.pagination.sortBy === column) {
+                this.pagination.descending = !this.pagination.descending;
+            } else {
+                this.pagination.sortBy = column;
+                this.pagination.descending = false;
+            }
+        }
+    },
+    computed: {
+        pages: function pages() {
+            return this.pagination.rowsPerPage ? Math.ceil(this.items.length / this.pagination.rowsPerPage) : 0;
+        }
     }
 });
 
 /***/ }),
-/* 11 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -27502,21 +27763,165 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-app",
-    { attrs: { id: "inspire" } },
+    "v-data-table",
+    {
+      staticClass: "elevation-1",
+      attrs: {
+        headers: _vm.headers,
+        items: _vm.items,
+        "select-all": "",
+        pagination: _vm.pagination,
+        "item-key": "name"
+      },
+      on: {
+        "update:pagination": function($event) {
+          _vm.pagination = $event
+        }
+      },
+      scopedSlots: _vm._u([
+        {
+          key: "headers",
+          fn: function(props) {
+            return [
+              _c(
+                "tr",
+                [
+                  _c(
+                    "th",
+                    [
+                      _c("v-checkbox", {
+                        attrs: {
+                          success: "",
+                          "hide-details": "",
+                          "input-value": props.all,
+                          indeterminate: props.indeterminate
+                        },
+                        nativeOn: {
+                          click: function($event) {
+                            _vm.toggleAll($event)
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._l(props.headers, function(header) {
+                    return _c(
+                      "th",
+                      {
+                        key: header.text,
+                        staticClass: "text-xs-left",
+                        class: [
+                          "column sortable",
+                          _vm.pagination.descending ? "desc" : "asc",
+                          header.value === _vm.pagination.sortBy ? "active" : ""
+                        ],
+                        on: {
+                          click: function($event) {
+                            _vm.changeSort(header.value)
+                          }
+                        }
+                      },
+                      [
+                        _c("v-icon", [_vm._v("arrow_upward")]),
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(header.text) +
+                            "\n            "
+                        )
+                      ],
+                      1
+                    )
+                  })
+                ],
+                2
+              )
+            ]
+          }
+        },
+        {
+          key: "items",
+          fn: function(props) {
+            return [
+              _c(
+                "tr",
+                {
+                  attrs: { active: props.selected },
+                  on: {
+                    click: function($event) {
+                      props.selected = !props.selected
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "td",
+                    { staticClass: "text-xs-left" },
+                    [
+                      _c("v-checkbox", {
+                        attrs: {
+                          success: "",
+                          "hide-details": "",
+                          "input-value": props.selected
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-xs-left" }, [
+                    _vm._v(_vm._s(props.item.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-xs-left" }, [
+                    _vm._v(_vm._s(props.item.calories))
+                  ])
+                ]
+              )
+            ]
+          }
+        }
+      ]),
+      model: {
+        value: _vm.selected,
+        callback: function($$v) {
+          _vm.selected = $$v
+        },
+        expression: "selected"
+      }
+    },
     [
-      _c(
-        "v-toolbar",
-        { attrs: { color: "primary", dark: "", fixed: "", app: "" } },
-        [_c("v-toolbar-title", [_vm._v("Application")])],
-        1
-      ),
-      _vm._v(" "),
-      _c("v-footer", { attrs: { color: "primary", app: "" } }, [
-        _c("span", { staticClass: "white--text" }, [_vm._v("© Arzek")])
+      _c("template", { slot: "footer" }, [
+        _c(
+          "td",
+          { attrs: { colspan: "100%" } },
+          [
+            [
+              _c(
+                "div",
+                { staticClass: "text-xs-left" },
+                [
+                  _c("v-pagination", {
+                    attrs: { length: _vm.pages },
+                    model: {
+                      value: _vm.pagination.page,
+                      callback: function($$v) {
+                        _vm.$set(_vm.pagination, "page", $$v)
+                      },
+                      expression: "pagination.page"
+                    }
+                  })
+                ],
+                1
+              )
+            ]
+          ],
+          2
+        )
       ])
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -27525,15 +27930,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-66ab2f82", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-294c2f46", module.exports)
   }
 }
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
