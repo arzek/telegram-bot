@@ -48,7 +48,7 @@
                 </template>
                 <div class="btn-group">
                     <send-message-component></send-message-component>
-                    <!--<delete-component></delete-component>-->
+                    <delete-component></delete-component>
                 </div>
             </td>
         </template>
@@ -57,6 +57,7 @@
 
 <script>
     import SendMessageComponent from '../components/SendMessageComponent.vue';
+    import DeleteComponent from  '../components/DeleteComponent.vue';
 
     export default {
         name: 'table-component',
@@ -146,7 +147,8 @@
             }
         },
         components: {
-            'send-message-component': SendMessageComponent
+            'send-message-component': SendMessageComponent,
+            'delete-component': DeleteComponent
         }
     }
 </script>
