@@ -1,0 +1,60 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons");
+
+// Vue
+@require '~vuetify/src/stylus/settings/_colors.styl'
+$theme := {
+  primary: $blue-grey.darken-1
+  accent: $blue-grey.accent-2
+  secondary: $grey.lighten-1
+  info: $blue.lighten-1
+  warning: $amber.darken-2
+  error: $red.accent-4
+  success: $green.lighten-2
+}
+@require '~vuetify/src/stylus/main.styl'
+
+// Something
+
+.table thead th {
+  position relative
+}
+
+.table thead th .icon {
+  position absolute
+  left 0
+}
+
+.table thead th .input-group__input,
+.table tbody td .input-group__input{
+  width 30px!important
+  max-width: 30px!important
+}
+
+.table__overflow {
+  max-width 600px!important
+}
+
+.btn-group{
+  display flex
+  flex-wrap wrap
+  padding-top 12px
+  .layout {
+    width inherit!important
+    justify-content flex-start!important
+    flex initial!important
+  }
+}
+
+.table tfoot tr td{
+  padding 24px!important
+}
+
+.table tfoot tr:nth-child(2){
+  display none!important
+}
+
+.container.fill-height .layout{
+  width 100%
+}
