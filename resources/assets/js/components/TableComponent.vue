@@ -46,16 +46,18 @@
                         <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
                     </div>
                 </template>
-                <!--<div class="btn-group">-->
-                    <!--<send-component></send-component>-->
+                <div class="btn-group">
+                    <send-message-component></send-message-component>
                     <!--<delete-component></delete-component>-->
-                <!--</div>-->
+                </div>
             </td>
         </template>
     </v-data-table>
 </template>
 
 <script>
+    import SendMessageComponent from '../components/SendMessageComponent.vue';
+
     export default {
         name: 'table-component',
         data () {
@@ -142,6 +144,9 @@
             pages () {
                 return this.pagination.rowsPerPage ? Math.ceil(this.items.length / this.pagination.rowsPerPage) : 0
             }
+        },
+        components: {
+            'send-message-component': SendMessageComponent
         }
     }
 </script>
