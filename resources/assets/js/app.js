@@ -15,9 +15,11 @@ window.Vuetify = require('vuetify');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('app', require('./AppComponent.vue'));
+Vue.component('app', require('./App.vue'));
+import store from './store';
 
 const app = new Vue({
     el: '#app',
-    template: '<app></app>'
+    template: '<app></app>',
+    store
 });
