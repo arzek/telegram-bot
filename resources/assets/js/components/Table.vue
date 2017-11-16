@@ -36,7 +36,7 @@
                     </v-checkbox>
                 </td>
                 <td class="text-xs-left">{{ props.item.name }}</td>
-                <td class="text-xs-left">{{ props.item.calories }}</td>
+                <td class="text-xs-left">{{ props.item.id }}</td>
             </tr>
         </template>
         <template slot="footer">
@@ -58,20 +58,11 @@
 <script>
     import SendMessageComponent from './SendMessage.vue';
     import DeleteComponent from './Delete.vue';
-    import axios from 'axios';
 
     export default {
         mounted() {
             this.$store.dispatch('getDataFromApi');
-//            axios.get('/user?ID=12345',{
-//                headers: {
-//                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-//                }
-//            }).then(function (response) {
-//                    console.log(response);
-//            }).catch(function (error) {
-//                    console.log(error);
-//            });
+
 
         },
         data () {
@@ -84,59 +75,7 @@
                         align: 'left',
                         value: 'name'
                     },
-                    { text: 'id', value: 'calories' }
-                ],
-                items: [
-                    {
-                        value: false,
-                        name: 'Frozen Yogurt',
-                        calories: 159
-                    },
-                    {
-                        value: false,
-                        name: 'Ice cream sandwich',
-                        calories: 237
-                    },
-                    {
-                        value: false,
-                        name: 'Eclair',
-                        calories: 262
-                    },
-                    {
-                        value: false,
-                        name: 'Cupcake',
-                        calories: 305
-                    },
-                    {
-                        value: false,
-                        name: 'Gingerbread',
-                        calories: 356
-                    },
-                    {
-                        value: false,
-                        name: 'Jelly bean',
-                        calories: 375
-                    },
-                    {
-                        value: false,
-                        name: 'Lollipop',
-                        calories: 392
-                    },
-                    {
-                        value: false,
-                        name: 'Honeycomb',
-                        calories: 408
-                    },
-                    {
-                        value: false,
-                        name: 'Donut',
-                        calories: 452
-                    },
-                    {
-                        value: false,
-                        name: 'KitKat',
-                        calories: 518
-                    }
+                    { text: 'id', value: 'id' }
                 ]
             }
         },
@@ -158,7 +97,7 @@
             pages () {
                 return this.pagination.rowsPerPage ? Math.ceil(this.items.length / this.pagination.rowsPerPage) : 0;
             },
-            test () {
+            items () {
                 return this.$store.getters.getData;
             }
         },

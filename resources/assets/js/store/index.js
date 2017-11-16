@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuex);
 
@@ -19,9 +20,16 @@ export default new Vuex.Store({
     },
     actions: {
         getDataFromApi({commit}) {
-            let data = [1,12,3];
 
-            commit('set',{ items: data});
+            axios.get('/users',{
+               headers: {
+                   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+               }
+            }).then(function (response) {
+                commit('set',{ items: response.data});
+            }).catch(function (error) {
+                   console.log(error);
+            });
         }
     }
 })

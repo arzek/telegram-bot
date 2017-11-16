@@ -29190,8 +29190,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SendMessage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__SendMessage_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Delete_vue__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Delete_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Delete_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 //
 //
 //
@@ -29249,7 +29247,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 
@@ -29257,15 +29254,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         this.$store.dispatch('getDataFromApi');
-        //            axios.get('/user?ID=12345',{
-        //                headers: {
-        //                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-        //                }
-        //            }).then(function (response) {
-        //                    console.log(response);
-        //            }).catch(function (error) {
-        //                    console.log(error);
-        //            });
     },
     data: function data() {
         return {
@@ -29275,48 +29263,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 text: 'Telegram Subscribers',
                 align: 'left',
                 value: 'name'
-            }, { text: 'id', value: 'calories' }],
-            items: [{
-                value: false,
-                name: 'Frozen Yogurt',
-                calories: 159
-            }, {
-                value: false,
-                name: 'Ice cream sandwich',
-                calories: 237
-            }, {
-                value: false,
-                name: 'Eclair',
-                calories: 262
-            }, {
-                value: false,
-                name: 'Cupcake',
-                calories: 305
-            }, {
-                value: false,
-                name: 'Gingerbread',
-                calories: 356
-            }, {
-                value: false,
-                name: 'Jelly bean',
-                calories: 375
-            }, {
-                value: false,
-                name: 'Lollipop',
-                calories: 392
-            }, {
-                value: false,
-                name: 'Honeycomb',
-                calories: 408
-            }, {
-                value: false,
-                name: 'Donut',
-                calories: 452
-            }, {
-                value: false,
-                name: 'KitKat',
-                calories: 518
-            }]
+            }, { text: 'id', value: 'id' }]
         };
     },
 
@@ -29337,7 +29284,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         pages: function pages() {
             return this.pagination.rowsPerPage ? Math.ceil(this.items.length / this.pagination.rowsPerPage) : 0;
         },
-        test: function test() {
+        items: function items() {
             return this.$store.getters.getData;
         }
     },
@@ -29838,7 +29785,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("td", { staticClass: "text-xs-left" }, [
-                    _vm._v(_vm._s(props.item.calories))
+                    _vm._v(_vm._s(props.item.id))
                   ])
                 ]
               )
@@ -29916,6 +29863,9 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+
 
 
 
@@ -29941,9 +29891,16 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         getDataFromApi: function getDataFromApi(_ref2) {
             var commit = _ref2.commit;
 
-            var data = [1, 12, 3];
 
-            commit('set', { items: data });
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/users', {
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                }
+            }).then(function (response) {
+                commit('set', { items: response.data });
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     }
 }));
