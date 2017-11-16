@@ -29247,6 +29247,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -29286,6 +29287,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         items: function items() {
             return this.$store.getters.getData;
+        }
+    },
+    watch: {
+        selected: function selected() {
+            this.$store.dispatch('setSelected', this.selected);
         }
     },
     components: {
@@ -29348,6 +29354,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
 //
 //
 //
@@ -29372,11 +29381,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            text: '',
             dialog: false
         };
+    },
+
+    methods: {
+        sendMessage: function sendMessage() {
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/users/send', { text: this.text, users_selected: this.users_selected }, {
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                }
+            }).then(function (response) {
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+            this.dialog = false;
+        }
+    },
+    computed: {
+        count: function count() {
+            return this.$store.getters.getSelected.length;
+        },
+        users_selected: function users_selected() {
+            return this.$store.getters.getSelected.filter(function (item) {
+                return item.subscribe == true;
+            });
+        }
     }
 });
 
@@ -29411,7 +29450,7 @@ var render = function() {
               attrs: { slot: "activator", color: "primary", dark: "" },
               slot: "activator"
             },
-            [_vm._v("Send message to selected (2)")]
+            [_vm._v("Send message to selected ( " + _vm._s(_vm.count) + " )")]
           ),
           _vm._v(" "),
           _c(
@@ -29429,6 +29468,13 @@ var render = function() {
                       name: "input-1",
                       label: "Label Text",
                       textarea: ""
+                    },
+                    model: {
+                      value: _vm.text,
+                      callback: function($$v) {
+                        _vm.text = $$v
+                      },
+                      expression: "text"
                     }
                   })
                 ],
@@ -29457,9 +29503,9 @@ var render = function() {
                     "v-btn",
                     {
                       attrs: { color: "primary" },
-                      nativeOn: {
+                      on: {
                         click: function($event) {
-                          _vm.dialog = false
+                          _vm.sendMessage()
                         }
                       }
                     },
@@ -29565,6 +29611,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             dialog: false
         };
+    },
+
+    computed: {
+        count: function count() {
+            return this.$store.getters.getSelected.length;
+        }
     }
 });
 
@@ -29599,7 +29651,7 @@ var render = function() {
               attrs: { slot: "activator", color: "primary", dark: "" },
               slot: "activator"
             },
-            [_vm._v("Delete selected (2)")]
+            [_vm._v("Delete selected ( " + _vm._s(_vm.count) + ")")]
           ),
           _vm._v(" "),
           _c(
@@ -29873,23 +29925,32 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     state: {
-        data: []
+        data: [],
+        selected: []
     },
     getters: {
         getData: function getData(state) {
             return state.data;
+        },
+        getSelected: function getSelected(state) {
+            return state.selected;
         }
     },
     mutations: {
-        set: function set(state, _ref) {
+        setData: function setData(state, _ref) {
             var items = _ref.items;
 
             state.data = items;
+        },
+        setSelected: function setSelected(state, _ref2) {
+            var selected = _ref2.selected;
+
+            state.selected = selected;
         }
     },
     actions: {
-        getDataFromApi: function getDataFromApi(_ref2) {
-            var commit = _ref2.commit;
+        getDataFromApi: function getDataFromApi(_ref3) {
+            var commit = _ref3.commit;
 
 
             __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/users', {
@@ -29897,10 +29958,15 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                 }
             }).then(function (response) {
-                commit('set', { items: response.data });
+                commit('setData', { items: response.data });
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        setSelected: function setSelected(_ref4, selected) {
+            var commit = _ref4.commit;
+
+            commit('setSelected', { selected: selected });
         }
     }
 }));

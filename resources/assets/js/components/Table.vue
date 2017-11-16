@@ -32,7 +32,8 @@
                     <v-checkbox
                             success
                             hide-details
-                            :input-value="props.selected">
+                            :input-value="props.selected"
+                            >
                     </v-checkbox>
                 </td>
                 <td class="text-xs-left">{{ props.item.name }}</td>
@@ -62,8 +63,6 @@
     export default {
         mounted() {
             this.$store.dispatch('getDataFromApi');
-
-
         },
         data () {
             return {
@@ -80,6 +79,8 @@
             }
         },
         methods: {
+
+
             toggleAll () {
                 if (this.selected.length) this.selected = [];
                 else this.selected = this.items.slice()
@@ -99,6 +100,11 @@
             },
             items () {
                 return this.$store.getters.getData;
+            }
+        },
+        watch: {
+            selected(){
+                this.$store.dispatch('setSelected',this.selected);
             }
         },
         components: {

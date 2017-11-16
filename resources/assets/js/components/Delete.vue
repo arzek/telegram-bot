@@ -1,7 +1,7 @@
 <template>
     <v-layout row justify-center>
         <v-dialog v-model="dialog" persistent>
-            <v-btn color="primary" dark slot="activator">Delete selected (2)</v-btn>
+            <v-btn color="primary" dark slot="activator">Delete selected ( {{ count }})</v-btn>
             <v-card>
                 <v-card-title class="headline">Delete selected?</v-card-title>
                 <v-card-text>Delete selected (2)</v-card-text>
@@ -20,6 +20,11 @@
         data () {
             return {
                 dialog: false
+            }
+        },
+        computed: {
+            count() {
+                return this.$store.getters.getSelected.length;
             }
         }
     }

@@ -17,7 +17,7 @@ class User extends Model implements \JsonSerializable
         return [
           'id' => $this->id,
           'name' => $this->first_name.' '.$this->last_name,
-          'value' => false
+          'subscribe' => $this->subscribe
         ];
     }
 

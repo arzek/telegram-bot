@@ -6,17 +6,24 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        data: []
+        data: [],
+        selected: []
     },
     getters: {
         getData(state) {
             return state.data;
+        },
+        getSelected(state) {
+            return state.selected;
         }
     },
     mutations: {
-        set(state,{ items }){
+        setData(state,{ items }){
             state.data = items;
-        }
+        },
+        setSelected(state,{ selected }){
+            state.selected = selected;
+        },
     },
     actions: {
         getDataFromApi({commit}) {
@@ -26,10 +33,13 @@ export default new Vuex.Store({
                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                }
             }).then(function (response) {
-                commit('set',{ items: response.data});
+                commit('setData',{ items: response.data});
             }).catch(function (error) {
                    console.log(error);
             });
+        },
+        setSelected({commit},selected){
+            commit('setSelected',{ selected: selected});
         }
     }
 })
