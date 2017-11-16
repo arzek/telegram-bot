@@ -10,61 +10,15 @@ namespace App\Entity;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class User extends Model implements \JsonSerializable
 {
-
-
-    /**
-     * @return int
-     */
-    public function getIdAttribute(): int
+    public function jsonSerialize()
     {
-        return $this->id;
+        return [
+          'id' => $this->id,
+          'name' => $this->first_name.' '.$this->last_name,
+          'value' => false
+        ];
     }
-
-    /**
-     * @return string
-     */
-    public function getFirstNameAttribute(): string
-    {
-        return $this->first_name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastNameAttribute(): string
-    {
-        return $this->last_name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUsernameAttribute(): string
-    {
-        return $this->username;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTypeAttribute(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isSubscribeAttribute(): bool
-    {
-        return $this->subscribe;
-    }
-
-
-
-
-
 
 }
