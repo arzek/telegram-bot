@@ -32,7 +32,7 @@ class TelegramService
         $command = $data[0];
         switch ($command){
             case '/start':{
-               $message = "Hi! My command: \n ".self::$command;
+               $message = "Hi! My command: \n".self::$command;
                break;
             }
             case '/ssl-info': {
