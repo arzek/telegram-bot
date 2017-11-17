@@ -21,19 +21,13 @@ class ApiController extends Controller
     {
         $status = true;
         $text = $request->input('text');
-        $users_selected = $request->input('users_selected');
+        $users = User::where('subscribe',true)->get();
 
-        if($text && count($users_selected)){
-            foreach ($users_selected as $user) {
-                try{
-                    $user = User::find($user['id']);
-
-                    if($user && $user->subscribe){
-                        TelegramService::sendMessage($text,$user['id']);
-                    }
-                }catch (\Exception $exception) {
-                    $status = false;
-                }
+        foreach ($users as $user) {
+            try{
+                TelegramService::sendMessage($text,$user->id);
+            }catch (\Exception $exception) {
+                $status = false;
             }
         }
 

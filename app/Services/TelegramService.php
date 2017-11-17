@@ -14,7 +14,7 @@ use Telegram;
 class TelegramService
 {
 
-    private static $command = "/start - beginning communication;  \n" .
+    private static $command = "/start - start bot;  \n" .
     "/ssl-info {domain} - domain verification; \n" .
     "/subscribe - subscribe to a message; \n" .
     "/unsubscribe - unsubscribe to a message; \n" .

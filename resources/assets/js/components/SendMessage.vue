@@ -35,7 +35,7 @@
         methods: {
             sendMessage(){
                 let component = this;
-                axios.post('/users/send',{ text: this.text , users_selected: this.users_selected },{
+                axios.post('/users/send',{ text: this.text},{
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                     }
@@ -46,7 +46,6 @@
                     console.log(error);
                     component.dialog = false;
                 });
-
             }
         },
         computed: {
