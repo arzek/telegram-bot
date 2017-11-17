@@ -48,8 +48,8 @@
                     </div>
                 </template>
                 <div class="btn-group">
-                    <send-message-component></send-message-component>
-                    <delete-component></delete-component>
+                    <send-message-component v-if="count"></send-message-component>
+                    <delete-component v-if="count"></delete-component>
                 </div>
             </td>
         </template>
@@ -74,7 +74,10 @@
                         align: 'left',
                         value: 'name'
                     },
-                    { text: 'id', value: 'id' }
+                    {
+                        text: 'id',
+                        value: 'id'
+                    }
                 ]
             }
         },
@@ -100,6 +103,9 @@
             },
             items () {
                 return this.$store.getters.getData;
+            },
+            count() {
+                return this.$store.getters.getSelected.length;
             }
         },
         watch: {

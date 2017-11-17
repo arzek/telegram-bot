@@ -29264,7 +29264,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 text: 'Telegram Subscribers',
                 align: 'left',
                 value: 'name'
-            }, { text: 'id', value: 'id' }]
+            }, {
+                text: 'id',
+                value: 'id'
+            }]
         };
     },
 
@@ -29287,6 +29290,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         items: function items() {
             return this.$store.getters.getData;
+        },
+        count: function count() {
+            return this.$store.getters.getSelected.length;
         }
     },
     watch: {
@@ -29393,18 +29399,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         sendMessage: function sendMessage() {
-
+            var component = this;
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/users/send', { text: this.text, users_selected: this.users_selected }, {
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                 }
             }).then(function (response) {
                 console.log(response);
+                component.dialog = false;
             }).catch(function (error) {
                 console.log(error);
+                component.dialog = false;
             });
-
-            this.dialog = false;
         }
     },
     computed: {
@@ -29466,7 +29472,7 @@ var render = function() {
                   _c("v-text-field", {
                     attrs: {
                       name: "input-1",
-                      label: "Label Text",
+                      label: "Text message",
                       textarea: ""
                     },
                     model: {
@@ -29499,18 +29505,20 @@ var render = function() {
                     [_vm._v("Disagree")]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "primary" },
-                      on: {
-                        click: function($event) {
-                          _vm.sendMessage()
-                        }
-                      }
-                    },
-                    [_vm._v("Agree")]
-                  )
+                  _vm.text
+                    ? _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "primary" },
+                          on: {
+                            click: function($event) {
+                              _vm.sendMessage()
+                            }
+                          }
+                        },
+                        [_vm._v("Agree")]
+                      )
+                    : _vm._e()
                 ],
                 1
               )
@@ -29588,6 +29596,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -29605,6 +29615,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -29613,9 +29625,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    methods: {
+        deleteItems: function deleteItems() {
+            var component = this;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/users/delete', { users_selected: this.users_selected }, {
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                }
+            }).then(function (response) {
+                var data = [];
+                for (var i = 0; i < component.users.length; i++) {
+                    var status = true;
+                    for (var j = 0; j < response.data.length; j++) {
+                        if (component.users[i].id == response.data[j]) {
+                            status = false;
+                        }
+                    }
+                    if (status) {
+                        data.push(component.users[i]);
+                    }
+                }
+                component.$store.dispatch('setData', data);
+                component.dialog = false;
+            }).catch(function (error) {
+                console.log(error);
+                component.dialog = false;
+            });
+        }
+    },
     computed: {
         count: function count() {
             return this.$store.getters.getSelected.length;
+        },
+        users_selected: function users_selected() {
+            return this.$store.getters.getSelected.filter(function (item) {
+                return item.subscribe == true;
+            });
+        },
+        users: function users() {
+            return this.$store.getters.getData;
         }
     }
 });
@@ -29661,7 +29709,9 @@ var render = function() {
                 _vm._v("Delete selected?")
               ]),
               _vm._v(" "),
-              _c("v-card-text", [_vm._v("Delete selected (2)")]),
+              _c("v-card-text", [
+                _vm._v("Delete selected (" + _vm._s(_vm.count) + ")")
+              ]),
               _vm._v(" "),
               _c(
                 "v-card-actions",
@@ -29685,9 +29735,9 @@ var render = function() {
                     "v-btn",
                     {
                       attrs: { color: "primary" },
-                      nativeOn: {
+                      on: {
                         click: function($event) {
-                          _vm.dialog = false
+                          _vm.deleteItems()
                         }
                       }
                     },
@@ -29883,9 +29933,9 @@ var render = function() {
               "div",
               { staticClass: "btn-group" },
               [
-                _c("send-message-component"),
+                _vm.count ? _c("send-message-component") : _vm._e(),
                 _vm._v(" "),
-                _c("delete-component")
+                _vm.count ? _c("delete-component") : _vm._e()
               ],
               1
             )
@@ -29949,8 +29999,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         }
     },
     actions: {
-        getDataFromApi: function getDataFromApi(_ref3) {
+        setData: function setData(_ref3, data) {
             var commit = _ref3.commit;
+
+            commit('setData', { items: data });
+        },
+        getDataFromApi: function getDataFromApi(_ref4) {
+            var commit = _ref4.commit;
 
 
             __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/users', {
@@ -29963,8 +30018,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
                 console.log(error);
             });
         },
-        setSelected: function setSelected(_ref4, selected) {
-            var commit = _ref4.commit;
+        setSelected: function setSelected(_ref5, selected) {
+            var commit = _ref5.commit;
 
             commit('setSelected', { selected: selected });
         }

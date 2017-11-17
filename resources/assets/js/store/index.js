@@ -26,6 +26,9 @@ export default new Vuex.Store({
         },
     },
     actions: {
+        setData({commit},data){
+            commit('setData',{ items: data});
+        },
         getDataFromApi({commit}) {
 
             axios.get('/users',{

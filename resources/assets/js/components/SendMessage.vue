@@ -7,7 +7,7 @@
                 <v-card-text>
                     <v-text-field
                             name="input-1"
-                            label="Label Text"
+                            label="Text message"
                             v-model="text"
                             textarea
                     ></v-text-field>
@@ -15,7 +15,7 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="primary" flat @click.native="dialog = false">Disagree</v-btn>
-                    <v-btn color="primary" @click="sendMessage()">Agree</v-btn>
+                    <v-btn color="primary" @click="sendMessage()" v-if="text">Agree</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -34,19 +34,19 @@
         },
         methods: {
             sendMessage(){
-
+                let component = this;
                 axios.post('/users/send',{ text: this.text , users_selected: this.users_selected },{
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                     }
                 }).then(function (response) {
                     console.log(response);
+                    component.dialog = false;
                 }).catch(function (error) {
                     console.log(error);
+                    component.dialog = false;
                 });
 
-
-                this.dialog = false
             }
         },
         computed: {
