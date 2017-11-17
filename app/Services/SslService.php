@@ -12,15 +12,14 @@ use QL\QueryList;
 
 class SSLService
 {
-    private const API = 'https://www.sslshopper.com/assets/snippets/sslshopper/ajax/ajax_check_ssl.php?hostname=';
-
     private static $document;
 
     /**
      * @param string $domain
      * @return string
      */
-    public static function check(string $domain): string {
+    public static function check(string $domain): string
+    {
         self::$document =  QueryList::get(self::getLink($domain));
 
         if(!self::isError()) {
@@ -34,14 +33,16 @@ class SSLService
      * @param string $domain
      * @return string
      */
-    private static function getLink(string $domain): string {
-        return self::API.$domain;
+    private static function getLink(string $domain): string
+    {
+        return env('SSL_API').$domain;
     }
 
     /**
      * @return bool|string
      */
-    private static function isError(): bool {
+    private static function isError(): bool
+    {
         if(count(self::$document->find('.failed')->htmls())) {
             return true;
 
@@ -53,13 +54,14 @@ class SSLService
     /**
      * @return string
      */
-    private static function getMessage(): string {
+    private static function getMessage(): string
+    {
         $data = self::$document->find('.checker_messages tr td h3')->htmls();
         $text = '';
 
         foreach ($data as $item) {
             if($item!='') {
-                $text.=$item."  \n ";
+                $text.=$item."  \n";
             }
         }
 
@@ -69,7 +71,8 @@ class SSLService
     /**
      * @return string
      */
-    private static function getErrorMessage(): string {
+    private static function getErrorMessage(): string
+    {
         return self::$document->find('tr td h3')->text();
     }
 
