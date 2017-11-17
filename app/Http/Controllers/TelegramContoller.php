@@ -32,7 +32,7 @@ class TelegramContoller extends Controller
                 }
             }
         }catch (\Exception $exception) {
-            
+
         }
 
     }

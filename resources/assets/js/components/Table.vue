@@ -49,7 +49,7 @@
                 </template>
                 <div class="btn-group">
                     <send-message-component v-if="count"></send-message-component>
-                    <delete-component v-if="count"></delete-component>
+                    <delete-component  v-on:clearSelected="clearSelected" v-if="count"></delete-component>
                 </div>
             </td>
         </template>
@@ -100,6 +100,9 @@
                 }else {
                     return text;
                 }
+            },
+            clearSelected (){
+                this.selected = [];
             }
         },
         computed: {

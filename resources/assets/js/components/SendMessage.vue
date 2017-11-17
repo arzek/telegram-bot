@@ -10,11 +10,12 @@
                             label="Text message"
                             v-model="text"
                             textarea
+                            autofocus
                     ></v-text-field>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" flat @click.native="dialog = false">Disagree</v-btn>
+                    <v-btn color="primary" flat @click.native="dialog = false;text = '';">Disagree</v-btn>
                     <v-btn color="primary" @click="sendMessage()" v-if="text">Agree</v-btn>
                 </v-card-actions>
             </v-card>
@@ -42,9 +43,11 @@
                 }).then(function (response) {
                     console.log(response);
                     component.dialog = false;
+                    component.text = '';
                 }).catch(function (error) {
                     console.log(error);
                     component.dialog = false;
+                    component.text = '';
                 });
 
             }

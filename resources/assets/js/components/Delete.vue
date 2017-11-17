@@ -41,7 +41,9 @@
                             }
                         }
                         if(status){
-                            data.push(component.users[i])
+                            data.push(component.users[i]);
+                            component.$emit('clearSelected');
+                            component.count = 0;
                         }
                     }
                     component.$store.dispatch('setData',data);
