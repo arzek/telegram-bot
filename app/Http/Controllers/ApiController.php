@@ -10,7 +10,7 @@ class ApiController extends Controller
 {
     public function getUsers()
     {
-        $users = User::all();
+        $users = User::where('subscribe',true)->get();
         return response()->json($users);
     }
 

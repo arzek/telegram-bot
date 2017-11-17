@@ -22,7 +22,7 @@
                     :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
                     @click="changeSort(header.value)">
                     <v-icon>arrow_upward</v-icon>
-                    {{ header.text }}
+                    {{ getHeaderText(header.text) }}
                 </th>
             </tr>
         </template>
@@ -82,8 +82,6 @@
             }
         },
         methods: {
-
-
             toggleAll () {
                 if (this.selected.length) this.selected = [];
                 else this.selected = this.items.slice()
@@ -94,6 +92,13 @@
                 } else {
                     this.pagination.sortBy = column;
                     this.pagination.descending = false;
+                }
+            },
+            getHeaderText(text) {
+                if(text == 'Telegram Subscribers') {
+                    return text + ' ('+ this.coutnAll + ')';
+                }else {
+                    return text;
                 }
             }
         },
@@ -106,6 +111,9 @@
             },
             count() {
                 return this.$store.getters.getSelected.length;
+            },
+            coutnAll(){
+                return this.$store.getters.getData.length;
             }
         },
         watch: {
