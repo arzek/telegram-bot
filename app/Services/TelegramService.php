@@ -13,6 +13,13 @@ use Telegram;
 
 class TelegramService
 {
+
+    private static $command = " /start - beginning communication;  \n" .
+    "/ssl-info {domain} - domain verification; \n" .
+    "/subscribe - subscribe to a message; \n" .
+    "/unsubscribe - unsubscribe to a message; \n" .
+    "/help - help on command;";
+
     /**
      * @param string $user_text
      * @param int $chat_id
@@ -25,7 +32,7 @@ class TelegramService
         $command = $data[0];
         switch ($command){
             case '/start':{
-               $message = 'Hi!';
+               $message = "Hi! My command: \n ".self::$command;
                break;
             }
             case '/ssl-info': {
@@ -48,11 +55,7 @@ class TelegramService
                 break;
             }
             case '/help': {
-                $message = " /start - beginning communication;  \n" .
-                    "/ssl-info {domain} - domain verification; \n" .
-                    "/subscribe - subscribe to a message; \n" .
-                    "/unsubscribe - unsubscribe to a message; \n" .
-                    "/help - help on command;";
+                $message = self::$command;
 
                 break;
             }
