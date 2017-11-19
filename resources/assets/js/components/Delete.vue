@@ -45,10 +45,12 @@
                             component.$emit('clearSelected');
                             component.count = 0;
                         }
+                        component.$emit('clearSelected');
                     }
                     component.$store.dispatch('setData',data);
                     component.dialog = false;
                 }).catch(function (error) {
+                    component.$emit('clearSelected');
                     console.log(error);
                     component.dialog = false;
                 });

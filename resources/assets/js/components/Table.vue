@@ -48,8 +48,8 @@
                     </div>
                 </template>
                 <div class="btn-group">
-                    <send-message-component v-if="count"></send-message-component>
-                    <delete-component  v-on:clearSelected="clearSelected" v-if="count"></delete-component>
+                    <send-message-component @clearSelected="clearSelected" v-if="count"></send-message-component>
+                    <delete-component  @clearSelected="clearSelected" v-if="count"></delete-component>
                 </div>
             </td>
         </template>
@@ -103,6 +103,8 @@
             },
             clearSelected (){
                 this.selected = [];
+                this.count = 0;
+                
             }
         },
         computed: {
@@ -120,7 +122,7 @@
             }
         },
         watch: {
-            selected(){
+            selected(){ 
                 this.$store.dispatch('setSelected',this.selected);
             }
         },

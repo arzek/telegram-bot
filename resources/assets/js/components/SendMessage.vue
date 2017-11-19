@@ -44,10 +44,12 @@
                     console.log(response);
                     component.dialog = false;
                     component.text = '';
+                    component.$emit('clearSelected');
                 }).catch(function (error) {
                     console.log(error);
                     component.dialog = false;
                     component.text = '';
+                    component.$emit('clearSelected');
                 });
 
             }
